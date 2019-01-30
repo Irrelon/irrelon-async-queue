@@ -47,9 +47,15 @@ class AsyncQueue {
 	}
 	
 	start (onFinish) {
-		this._started = true;
-		this._onFinish = onFinish;
+		if (onFinish) {
+			this._onFinish = onFinish;
+		}
 		
+		if (this._started) {
+			return;
+		}
+		
+		this._started = true;
 		this.update();
 	}
 	
