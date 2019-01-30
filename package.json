@@ -1,11 +1,19 @@
 {
   "name": "irrelon-async-queue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple async queue processor.",
   "main": "AsyncQueue.js",
   "scripts": {
     "test": "node testQueue.js"
   },
   "author": "Irrelon Software Limited",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Irrelon/irrelon-async-queue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Irrelon/irrelon-async-queue/issues"
+  },
+  "homepage": "https://github.com/Irrelon/irrelon-async-queue"
 }
