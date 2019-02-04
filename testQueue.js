@@ -1,6 +1,7 @@
 const AsyncQueue = require('./AsyncQueue');
 const queue = new AsyncQueue({
-	concurrency: 2
+	concurrency: 2,
+	stopOnComplete: false
 });
 
 queue.worker((data) => {

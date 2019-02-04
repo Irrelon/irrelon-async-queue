@@ -5,6 +5,7 @@ class AsyncQueue {
 		this._data = [];
 		this._started = false;
 		this._workerCount = 0;
+		this._stopOnComplete = options.stopOnComplete === true;
 		
 		this._workerFinished = this._workerFinished.bind(this);
 		this._workerFailed = this._workerFailed.bind(this);
@@ -117,6 +118,10 @@ class AsyncQueue {
 	}
 	
 	finished () {
+		if (this._stopOnComplete) {
+			this.stop();
+		}
+		
 		this._onFinish && this._onFinish();
 	}
 }
