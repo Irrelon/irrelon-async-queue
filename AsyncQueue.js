@@ -98,11 +98,11 @@ class AsyncQueue {
 		this._workerCount++;
 		
 		// Fire up worker process
-		setImmediate(() => {
+		setTimeout(() => {
 			this._worker(workerData)
 				.then(this._workerFinished)
 				.catch(this._workerFailed);
-		});
+		}, 1);
 	}
 	
 	_workerFinished (response) {

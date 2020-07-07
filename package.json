@@ -1,6 +1,6 @@
 {
-  "name": "irrelon-async-queue",
-  "version": "1.0.3",
+  "name": "@irrelon/async-queue",
+  "version": "2.0.1",
   "description": "A simple async queue processor.",
   "main": "AsyncQueue.js",
   "scripts": {
@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Irrelon/irrelon-async-queue/issues"
   },
-  "homepage": "https://github.com/Irrelon/irrelon-async-queue"
+  "homepage": "https://github.com/Irrelon/irrelon-async-queue",
+  "private": false
 }
