@@ -16,8 +16,8 @@ export declare class AsyncQueue {
     push(val: unknown): void;
     concat(val: unknown[]): void;
     concurrency(val?: number): number | this;
-    worker(val: WorkerFunction): this | WorkerFunction;
-    start(onFinish: () => unknown): void;
+    worker(val?: WorkerFunction): this | WorkerFunction;
+    start(onFinish?: () => unknown): void;
     stop(): void;
     update(): void;
     _startWorker(): void;

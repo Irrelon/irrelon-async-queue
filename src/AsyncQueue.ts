@@ -57,7 +57,7 @@ export class AsyncQueue {
         return this._concurrency;
     }
 
-    worker(val: WorkerFunction) {
+    worker(val?: WorkerFunction) {
         if (val !== undefined) {
             this._worker = val;
             return this;
@@ -66,7 +66,7 @@ export class AsyncQueue {
         return this._worker;
     }
 
-    start(onFinish: () => unknown) {
+    start(onFinish?: () => unknown) {
         if (onFinish) {
             this._onFinish = onFinish;
         }
