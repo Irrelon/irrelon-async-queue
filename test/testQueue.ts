@@ -1,18 +1,18 @@
-const AsyncQueue = require('./AsyncQueue');
+import { AsyncQueue } from "../src/AsyncQueue";
 const queue = new AsyncQueue({
 	concurrency: 2,
 	stopOnComplete: false
 });
 
-queue.worker((data) => {
+queue.worker((data: any) => {
 	return new Promise((resolve) => {
 		console.log('Worker was given data', data);
-		
+
 		setTimeout(() => {
 			if (data === 3) {
 				queue.push(6);
 			}
-			resolve();
+			void resolve(undefined);
 		}, 1000);
 	});
 });
