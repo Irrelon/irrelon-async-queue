@@ -1,24 +1,21 @@
-export type WorkerFunction = (data: unknown) => Promise<unknown>;
+export type WorkerFunction<DataType = any, ResponseType = void> = (data: DataType) => Promise<ResponseType>;
 
 export interface AsyncQueueOptions {
     concurrency?: number;
     stopOnComplete?: boolean;
 }
 
-export class AsyncQueue {
+export class AsyncQueue<DataType = any, ResponseType = void> {
     private _data: any[];
     private _started: boolean;
     private _onFinish?: () => unknown;
-    private _worker: WorkerFunction;
+    private _worker?: WorkerFunction<DataType, ResponseType>;
     private _workerCount: number;
     private _stopOnComplete: boolean;
     private _concurrency: number;
 
     constructor(options: AsyncQueueOptions = { concurrency: 1 }) {
         this._concurrency = 1;
-        this._worker = async () => {
-            return;
-        };
         this.concurrency(options.concurrency);
 
         this._data = [];
@@ -57,7 +54,7 @@ export class AsyncQueue {
         return this._concurrency;
     }
 
-    worker(val?: WorkerFunction) {
+    worker(val?: WorkerFunction<DataType, ResponseType>) {
         if (val !== undefined) {
             this._worker = val;
             return this;
@@ -118,7 +115,7 @@ export class AsyncQueue {
 
         // Fire up worker process
         setTimeout(() => {
-            this._worker(workerData).then(this._workerFinished).catch(this._workerFailed);
+            this._worker && this._worker(workerData).then(this._workerFinished).catch(this._workerFailed);
         }, 1);
     }
 

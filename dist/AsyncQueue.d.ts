@@ -1,13 +1,13 @@
-export declare type WorkerFunction = (data: unknown) => Promise<unknown>;
+export declare type WorkerFunction<DataType = any, ResponseType = void> = (data: DataType) => Promise<ResponseType>;
 export interface AsyncQueueOptions {
     concurrency?: number;
     stopOnComplete?: boolean;
 }
-export declare class AsyncQueue {
+export declare class AsyncQueue<DataType = any, ResponseType = void> {
     private _data;
     private _started;
     private _onFinish?;
-    private _worker;
+    private _worker?;
     private _workerCount;
     private _stopOnComplete;
     private _concurrency;
@@ -16,7 +16,7 @@ export declare class AsyncQueue {
     push(val: unknown): void;
     concat(val: unknown[]): void;
     concurrency(val?: number): number | this;
-    worker(val?: WorkerFunction): this | WorkerFunction;
+    worker(val?: WorkerFunction<DataType, ResponseType>): this | WorkerFunction<DataType, ResponseType> | undefined;
     start(onFinish?: () => unknown): void;
     stop(): void;
     update(): void;
